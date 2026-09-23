@@ -1,5 +1,7 @@
 # GNSS Sharing System
 
+English | [中文](README_zh.md)
+
 A client-server Android application system that shares GNSS location data from a smartphone to a car multimedia system over WiFi hotspot connection.
 
 ## System Overview

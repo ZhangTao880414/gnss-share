@@ -18,6 +18,7 @@
 <resources>
     <string name="app_name">GNSS Server</string>
     <string name="app_description">GNSS location sharing server</string>
+    <string name="language_switch">中文</string>
 
     <string name="notification_title">%s Running</string>
     <string name="notification_failed_title">%s Failed to Run</string>

@@ -34,6 +34,7 @@ public class Preferences {
     private static final String PREF_BLUETOOTH_AUTO_START_ENABLED = "bluetoothAutoStartEnabled";
     private static final String PREF_BLUETOOTH_TRIGGER_DEVICES = "bluetoothTriggerDevices";
     private static final String PREF_FUSED_LOCATION_ENABLED = "fusedLocationEnabled";
+    private static final String PREF_LANGUAGE = "language";
 
     // Legacy keys for migration
     private static final String PREF_BLUETOOTH_TRIGGER_DEVICE_MAC = "bluetoothTriggerDeviceMac";
@@ -128,6 +129,15 @@ public class Preferences {
 
     public static boolean fusedLocationEnabled(Context context) {
         return getPrefs(context).getBoolean(PREF_FUSED_LOCATION_ENABLED, true);
+    }
+
+    // Language tag ("en" or "zh"); empty means follow the system language
+    public static void setLanguage(Context context, String value) {
+        getPrefs(context).edit().putString(PREF_LANGUAGE, value).apply();
+    }
+
+    public static String language(Context context) {
+        return getPrefs(context).getString(PREF_LANGUAGE, "");
     }
 
     private static SharedPreferences getPrefs(Context context) {

@@ -1,0 +1,85 @@
+<!--
+  ~ Copyright © 2025-2026 Dezz (https://github.com/DezzK)
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">GNSS 客户端</string>
+    <string name="connection_status_title">连接状态</string>
+    <string name="connected">已连接</string>
+    <string name="connecting">连接中…</string>
+    <string name="disconnected">已断开</string>
+    <string name="connection_status">%s</string>
+    <string name="connection_status_connected">✓ 已连接到 %s</string>
+    <string name="connection_status_connecting">正在连接 %s…</string>
+    <string name="connection_status_disconnected">✗ 未连接</string>
+    <string name="data_age_status">最后收到定位：%s</string>
+    <string name="data_age_format_s">%d秒前</string>
+    <string name="data_age_format_ms">%1$d分%2$d秒前</string>
+
+    <string name="language_switch">English</string>
+
+    <string name="permission_title">权限</string>
+    <string name="checking_permissions">正在检查权限…</string>
+    <string name="request_permissions">申请全部权限</string>
+    <string name="all_permissions_granted">✓ 已授予全部权限</string>
+    <string name="all_permissions_granted_toast">已授予全部权限！</string>
+    <string name="missing_permissions_toast">部分权限被拒绝，应用可能无法正常运行。</string>
+    <string name="missing_permissions">缺少：%s</string>
+    <string name="mock_location_enable_message">请在开发者选项中开启“允许模拟位置”并选择本应用</string>
+    <string name="mock_location_permission_denied">模拟位置权限被拒绝 - 请检查开发者选项</string>
+    <string name="mock_location_setup_failed">模拟位置设置失败：%s</string>
+    <string name="mock_location_provider_ready">✓ 模拟位置提供程序就绪</string>
+
+    <string name="permission_fine_location">精确位置</string>
+    <string name="permission_coarse_location">大致位置</string>
+
+    <string name="location_information_title">位置信息</string>
+    <string name="location_status">位置：%s</string>
+    <string name="altitude_format">" (%.1f米)"</string>
+    <string name="location_accuracy_format">" ±%.1f米"</string>
+    <string name="provider_status">来源：%s</string>
+    <string name="satellites_status">卫星数：%d</string>
+    <string name="age_status">数据年龄：%s</string>
+    <string name="age_format">%.1f秒</string>
+    <string name="movement_speed">速度：%s</string>
+    <string name="speed_format">%.1f米/秒</string>
+    <string name="movement_bearing">方位角：%s</string>
+
+    <string name="unknown">未知</string>
+
+    <string name="select_server_address_title">服务器地址</string>
+    <string name="connect_to_gateway_ip">使用网关 IP（服务器位于 Wi-Fi 热点）</string>
+    <string name="set_hostname_or_ip_address_manually">手动输入主机名或 IP 地址</string>
+    <string name="editServerIp">服务器主机名或 IP 地址</string>
+
+    <string name="service_status_title">后台服务状态</string>
+    <string name="service_running">✓ 服务运行中</string>
+    <string name="service_stopped">✗ 服务已停止</string>
+    <string name="enable_service">启动</string>
+    <string name="disable_service">停止</string>
+    <string name="toast_service_enabled">GNSS 客户端服务已启用 - 开机自动启动</string>
+    <string name="toast_service_disabled">GNSS 客户端服务已停用 - 不会开机自动启动</string>
+
+    <string name="static_jitter">静止时添加位置抖动（可隐藏部分导航应用中的广告）</string>
+
+    <string name="notification_title_disconnected">%s - 已断开</string>
+    <string name="notification_title_connected">%s - 已连接</string>
+    <string name="notification_text_disconnected">正在尝试连接 GNSS 服务器</string>
+    <string name="notification_text_connected">正在接收定位数据 | 数据年龄：%.1f秒</string>
+    <string name="notification_text_connected_no_age">正在接收定位数据</string>
+    <string name="notification_text_location_format">纬度：%1$.6f，经度：%2$.6f</string>
+    <string name="notification_channel_description">%s 定位服务</string>
+</resources>

@@ -25,6 +25,7 @@ public class Preferences {
     private static final String PREF_USE_GATEWAY_IP = "useGatewayIp";
     private static final String PREF_SERVER_ADDRESS = "serverAddress";
     private static final String PREF_STATIC_JITTER_ENABLED = "staticJitterEnabled";
+    private static final String PREF_LANGUAGE = "language";
 
     // SharedPreferences helper methods
     public static void setServiceEnabled(Context context, boolean enabled) {
@@ -57,6 +58,15 @@ public class Preferences {
 
     public static boolean staticJitterEnabled(Context context) {
         return getPrefs(context).getBoolean(PREF_STATIC_JITTER_ENABLED, false);
+    }
+
+    // Language tag ("en" or "zh"); empty means follow the system language
+    public static void setLanguage(Context context, String value) {
+        getPrefs(context).edit().putString(PREF_LANGUAGE, value).apply();
+    }
+
+    public static String language(Context context) {
+        return getPrefs(context).getString(PREF_LANGUAGE, "");
     }
 
     private static SharedPreferences getPrefs(Context context) {

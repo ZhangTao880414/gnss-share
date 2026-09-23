@@ -46,6 +46,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
+import androidx.core.os.LocaleListCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        applySavedLanguage();
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         setContentView(R.layout.activity_main_server);
@@ -184,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
      * so they don't get drawn under the status / navigation bars.
      */
     private void applyWindowInsets() {
-        View header = findViewById(R.id.header);
+        View header = findViewById(R.id.headerContainer);
         View copyright = findViewById(R.id.copyrightText);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rootLayout), (v, windowInsets) -> {
@@ -202,6 +204,29 @@ public class MainActivity extends AppCompatActivity {
                     bars.bottom + (int) (8 * getResources().getDisplayMetrics().density));
             return WindowInsetsCompat.CONSUMED;
         });
+    }
+
+    private void applySavedLanguage() {
+        String language = Preferences.language(this);
+        if (!language.isEmpty()) {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(language));
+        }
+    }
+
+    private void toggleLanguage() {
+        String stored = Preferences.language(this);
+        String current;
+        if (!stored.isEmpty()) {
+            current = stored;
+        } else {
+            LocaleListCompat appLocales = AppCompatDelegate.getApplicationLocales();
+            current = appLocales.isEmpty()
+                    ? getResources().getConfiguration().getLocales().get(0).getLanguage()
+                    : appLocales.get(0).getLanguage();
+        }
+        String target = "zh".equals(current) ? "en" : "zh";
+        Preferences.setLanguage(this, target);
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(target));
     }
 
     private void initializeViews() {
@@ -225,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
         startServiceButton.setOnClickListener(v -> startGNSSService());
         stopServiceButton.setOnClickListener(v -> stopGNSSService());
         findViewById(R.id.exportLogsButton).setOnClickListener(v -> exportLogs("gnss-server"));
+        findViewById(R.id.languageButton).setOnClickListener(v -> toggleLanguage());
 
         // Bluetooth settings listeners
         bluetoothAutoStartSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {

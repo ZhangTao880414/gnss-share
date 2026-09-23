@@ -46,6 +46,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.content.IntentCompat;
+import androidx.core.os.LocaleListCompat;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -143,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        applySavedLanguage();
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         setContentView(R.layout.activity_main);
@@ -171,6 +173,29 @@ public class MainActivity extends AppCompatActivity {
         unregisterReceiver(locationReceiver);
         unregisterReceiver(mockLocationStatusReceiver);
         uiHandler.removeCallbacksAndMessages(null);
+    }
+
+    private void applySavedLanguage() {
+        String language = Preferences.language(this);
+        if (!language.isEmpty()) {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(language));
+        }
+    }
+
+    private void toggleLanguage() {
+        String stored = Preferences.language(this);
+        String current;
+        if (!stored.isEmpty()) {
+            current = stored;
+        } else {
+            LocaleListCompat appLocales = AppCompatDelegate.getApplicationLocales();
+            current = appLocales.isEmpty()
+                    ? getResources().getConfiguration().getLocales().get(0).getLanguage()
+                    : appLocales.get(0).getLanguage();
+        }
+        String target = "zh".equals(current) ? "en" : "zh";
+        Preferences.setLanguage(this, target);
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(target));
     }
 
     private void initializeViews() {
@@ -224,6 +249,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up permissions button click listener
         requestPermissionsButton.setOnClickListener(v -> requestPermissions());
+
+        findViewById(R.id.languageButton).setOnClickListener(v -> toggleLanguage());
 
         // Set up service control button click listeners
         startServiceButton.setOnClickListener(v -> startGNSSService());
