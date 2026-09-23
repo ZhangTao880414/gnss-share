@@ -23,7 +23,7 @@ String getVersionName() {
 
     logger.warn('Environment variable `VERSION_NAME` was not set, using default version')
 
-    return 'v1.0.0'
+    return 'v2.10.2'
 }
 
 int getVersionCode() {
