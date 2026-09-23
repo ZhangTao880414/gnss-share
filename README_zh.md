@@ -23,6 +23,14 @@
 
 ## 安装说明
 
+### 开发环境
+
+- **JDK：** 21（在 `gradle/gradle-daemon-jvm.properties` 中声明为 Gradle 守护进程工具链；首次构建时自动下载，因此本地没有 JDK 21 也可以构建）
+- **Gradle：** 9.3.1，随仓库自带的 wrapper 使用，无需本地安装 Gradle
+- **Android Gradle Plugin：** 9.1.0
+- **Android SDK：** API 36（compileSdk / targetSdk）；通过 Android Studio 或命令行工具安装，并设置 `ANDROID_HOME` 环境变量，或在仓库根目录创建 `local.properties` 文件并写入 `sdk.dir=<SDK 路径>`
+- **minSdk：** 24（服务端）/ 28（客户端）
+
 ### 构建应用
 
 1. **克隆并准备：**
@@ -31,10 +39,22 @@ git clone
 cd gnss-share
 ```
 
-2. **构建服务端与客户端应用：**
+2. **构建服务端与客户端应用（debug）：**
 ```bash
 ./gradlew assembleDebug
 ```
+
+3. **构建签名的 release APK**（需要仓库根目录下存在 `keystore.jks`，并设置 `KEY_PASSWORD` 环境变量）：
+```bash
+./gradlew assembleRelease
+```
+
+构建产物 APK 输出位置：
+
+- `client-app/build/outputs/apk/<variant>/gnss-client-<version>.apk`
+- `server-app/build/outputs/apk/<variant>/gnss-server-<version>.apk`
+
+应用版本号取自 `VERSION_NAME` 环境变量（例如 `v2.10.2`）；未设置时使用根 `build.gradle` 中的默认版本。推送 `v*` 标签时，GitHub Actions 也会自动构建签名 release APK。
 
 ## 使用说明
 

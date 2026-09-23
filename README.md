@@ -23,6 +23,14 @@ A client-server Android application system that shares GNSS location data from a
 
 ## Setup Instructions
 
+### Development Environment
+
+- **JDK:** 21 (declared as the Gradle daemon toolchain in `gradle/gradle-daemon-jvm.properties`; provisioned automatically on the first build, so a local JDK 21 installation is not strictly required)
+- **Gradle:** 9.3.1 via the included wrapper — no local Gradle installation needed
+- **Android Gradle Plugin:** 9.1.0
+- **Android SDK:** API 36 (compileSdk / targetSdk); install via Android Studio or the command-line tools and either set the `ANDROID_HOME` environment variable or create a `local.properties` file with `sdk.dir=<path to SDK>`
+- **minSdk:** 24 (server app) / 28 (client app)
+
 ### Building the Applications
 
 1. **Clone and Setup:**
@@ -31,10 +39,22 @@ git clone
 cd gnss-share
 ```
 
-2. **Build Server & Client Apps:**
+2. **Build Server & Client Apps (debug):**
 ```bash
 ./gradlew assembleDebug
 ```
+
+3. **Build signed release APKs** (requires `keystore.jks` in the repository root and the `KEY_PASSWORD` environment variable):
+```bash
+./gradlew assembleRelease
+```
+
+Output APKs are written to:
+
+- `client-app/build/outputs/apk/<variant>/gnss-client-<version>.apk`
+- `server-app/build/outputs/apk/<variant>/gnss-server-<version>.apk`
+
+The app version is taken from the `VERSION_NAME` environment variable (for example `v2.10.2`); when unset, the default from the root `build.gradle` is used. Signed release APKs are also built automatically by GitHub Actions whenever a `v*` tag is pushed.
 
 ## Usage Instructions
 
