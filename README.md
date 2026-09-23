@@ -74,6 +74,10 @@ The app version is taken from the `VERSION_NAME` environment variable (for examp
    - App will automatically connect to server (watch for connection toast)
    - Verify mock location provider is active
 
+### Language Switching
+
+Both apps support English and Chinese. Tap the language button in the top-right corner of the main screen to switch: the button shows the target language name ("中文" in the English UI, "English" in the Chinese UI). The choice is saved and restored on the next launch; by default the apps follow the system language.
+
 ### Contributing
 
 1. Fork the repository
