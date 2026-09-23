@@ -21,6 +21,11 @@ A client-server Android application system that shares GNSS location data from a
 - Shows detailed debugging information in main activity
 - Displays connection status and reconnection attempts
 
+**Language Switching:**
+- Both apps support English and Chinese
+- Switch via the language button in the top-right corner of the main screen (it shows the target language name: "中文" in the English UI, "English" in the Chinese UI)
+- The choice is saved and restored on the next launch; by default the apps follow the system language
+
 ## Setup Instructions
 
 ### Development Environment
@@ -73,10 +78,6 @@ The app version is taken from the `VERSION_NAME` environment variable (for examp
    - Grant all requested permissions
    - App will automatically connect to server (watch for connection toast)
    - Verify mock location provider is active
-
-### Language Switching
-
-Both apps support English and Chinese. Tap the language button in the top-right corner of the main screen to switch: the button shows the target language name ("中文" in the English UI, "English" in the Chinese UI). The choice is saved and restored on the next launch; by default the apps follow the system language.
 
 ### Contributing
 
