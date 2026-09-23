@@ -7,14 +7,17 @@ A client-server Android application system that shares GNSS location data from a
 ## System Overview
 
 **Server (Smartphone):**
+- Requires Android 7.0 (API 24) or later
 - Collects high-precision GNSS data
 - Runs as background service with foreground notification
 - Streams location updates to connected clients via TCP
 - Shows debugging information in notification panel
 - Automatically manages power consumption
 - Handles multiple client connections with individual heartbeat monitoring
+- Optionally uses Google's Fused Location Provider on Android 12+ for improved accuracy (falls back to the system GPS provider on older versions)
 
 **Client (Car Multimedia System):**
+- Requires Android 9.0 (API 28) or later
 - Implements robust connection management with auto-reconnection
 - Uses WiFi-aware reconnection
 - Receives location data and provides system-wide mock GPS
